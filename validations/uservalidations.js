@@ -7,8 +7,8 @@ const registerValidation = (data) => {
         password: Joi.string().min(6).required(),
     })
     
-    const {erorr} = schema.validate(data);
-    return erorr
+    const {error} = schema.validate(data);
+    return error
 }
 
 const loginValidation = (data) => {
@@ -17,8 +17,8 @@ const loginValidation = (data) => {
         password: Joi.string().min(6).required(),
     })
 
-    const {erorr} = schema.validate(data);
-    return erorr
+    const {error} = schema.validate(data);
+    return error
 }
 
 

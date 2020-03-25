@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -19,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default : Date.now
     },
+    transcations :[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Transaction'
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);
