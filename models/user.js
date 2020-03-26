@@ -19,11 +19,7 @@ const userSchema = new mongoose.Schema({
     date :{
         type: Date,
         default : Date.now
-    },
-    transcations :[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Transaction'
-    }]
+    }
 });
 
 module.exports = mongoose.model('User', userSchema);
