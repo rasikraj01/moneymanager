@@ -21,7 +21,9 @@ app.use(express.json());
 app.use('/api/user', authRoutes);
 app.use('/api/transaction', transactionRoutes);
 
-
+app.get('/', (req, res) => {
+    res.render('money manager')
+})
 
 app.listen(PORT, () => {
     console.log(`Server running on PORT ${PORT}`);
