@@ -22,7 +22,7 @@ app.use('/api/user', authRoutes);
 app.use('/api/transaction', transactionRoutes);
 
 app.get('/', (req, res) => {
-    res.render('money manager')
+    res.send({'test': 'ok'})
 })
 
 app.listen(PORT, () => {
