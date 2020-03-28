@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000;
 
 
 mongoose.connect(
-    process.env.DB_CONNECT,
+    `mongodb+srv://${process.env.DB_CONNECT}:${process.env.DB_CONNECT}@moneymgr-sfi2d.mongodb.net/test?retryWrites=true&w=majority`,
     { useNewUrlParser: true },
     () => {
      console.log('Database connected');
