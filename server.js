@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const authRoutes = require('./routes/authRoutes');
-const transactionRoutes = require('./routes/transactionRoutes')
+const authRoutes = require('./routes/authroutes');
+const transactionRoutes = require('./routes/transactionRoutes');
 require('dotenv').config();
 
 const app = express();

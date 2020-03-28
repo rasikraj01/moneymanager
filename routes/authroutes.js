@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     let error = registerValidation(req.body)
     if (error) res.status(400).send(error.details[0].message)
 
-    // check if already exists
+    // check if already exists in the db
     let emailExists = await User.findOne({email : req.body.email})
     if (emailExists) res.status(400).send("Email already Exists")
 
