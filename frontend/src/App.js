@@ -9,10 +9,11 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 
-
 function App() {
 	let [isLoggedIn, setIsLoggedIn] = useState(false)
-
+	// useEffect(() => {
+	// 	setIsLoggedIn(true)
+	// })
 	return (
 
 		<div>
@@ -25,13 +26,14 @@ function App() {
 						<Login setIsLoggedIn={setIsLoggedIn}/>
 					</Route>
 					<Route path="/dashboard">
-						<Dashboard />
+						<Dashboard isLoggedIn={isLoggedIn}/>
 					</Route>
-					{isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>}
 				</Switch>
+				{isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>}
 			</Router>
 		</div>
 	);
 }
+
 
 export default App;
