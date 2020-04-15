@@ -1,11 +1,16 @@
 import React, {useEffect, useState} from 'react';
 
-function SingleTransaction() {
-
+function SingleTransaction(props) {
+    let {title, date, category,type,amount, desc} = props.transaction
     return (
-        <div>
-            single transcation
-        </div>
+        <tr>
+            <td>{title}</td>
+            <td>{date}</td>
+            <td>{category}</td>
+            <td>{type}</td>
+            <td>{amount}</td>
+            <td>{desc}</td>
+        </tr>
   );
 }
 

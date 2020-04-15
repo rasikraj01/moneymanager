@@ -29,7 +29,7 @@ function App() {
 						<Dashboard isLoggedIn={isLoggedIn}/>
 					</Route>
 				</Switch>
-				{isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>}
+				{/* {isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>} */}
 			</Router>
 		</div>
 	);
