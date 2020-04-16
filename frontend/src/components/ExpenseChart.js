@@ -5,9 +5,8 @@ function ExpenseChart(props) {
     const myRef = useRef(null)
 
 
+    // data objecct init 
     let data = {}
-    // console.log(props.expense)
-    // console.log(data)    
     for(let i = 0; i < props.expense.length; i++){
         let category = props.expense[i].category
         if(category in data){
@@ -30,13 +29,16 @@ function ExpenseChart(props) {
                     backgroundColor: [
                         '#FF6384',
                         '#36A2EB',
-                        '#FFCE56'
+                        '#27ae60',
+                        '#FFCE56',
+                        '#476172',
+                        '#1abc9c',
+                        '#9b59b6',
+                        '#f1c40f',
+                        '#e67e22',
+                        '#34495e',
                         ],
-                        hoverBackgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56'
-                        ]
+                        hoverBackgroundColor: []
                     }
                 ]
             },
