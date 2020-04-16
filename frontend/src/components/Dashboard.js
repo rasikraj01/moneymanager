@@ -85,15 +85,67 @@ function Dashboard(props) {
             "amount": 10000,
             "desc": "why do i pay this much rent",
             "__v": 0
+        },
+        {
+            "_id": "5e97820d2f1f9400047f5d5d",
+            "user": "5e7bd1a7a4475a84d00faf80",
+            "title": "houes rent",
+            "date": "2020-03-25T22:23:49.730Z",
+            "category": "desk",
+            "type": "income",
+            "amount": 10000,
+            "desc": "salary aa gayii",
+            "__v": 0
+        },
+        {
+            "_id": "5e97821b2f1f9400047f5d5e",
+            "user": "5e7bd1a7a4475a84d00faf80",
+            "title": "houes rent",
+            "date": "2020-03-25T22:23:49.730Z",
+            "category": "salary",
+            "type": "income",
+            "amount": 10000,
+            "desc": "salary aa gayii",
+            "__v": 0
+        },
+        {
+            "_id": "5e97821b2f1f9401047f5d5e",
+            "user": "5e7bd1a7a4475a84d00faf80",
+            "title": "money",
+            "date": "2020-01-25T22:23:49.730Z",
+            "category": "salary",
+            "type": "income",
+            "amount": 5000,
+            "desc": "freelancing",
+            "__v": 0
+        },
+        {
+            "_id": "5e9782912f1f9400047f5d5f",
+            "user": "5e7bd1a7a4475a84d00faf80",
+            "title": "houes rent",
+            "date": "2020-04-15T21:54:43.556Z",
+            "category": "fun",
+            "type": "expense",
+            "amount": 500,
+            "desc": "desi daru",
+            "__v": 0
         }
     ])
+
+    let expense = transactions.filter((transaction) => {
+        return transaction.type === "expense"
+    })
+
+    let income = transactions.filter((transaction) => {
+        return transaction.type === "income"
+    })
 
     return (
         <div>
             {/* {!props.isLoggedIn && (<Redirect to="/login" />)} */}
-            <LineGraph/>
+            <LineGraph expense={expense} income={income} />
             <TransactionForm/>
-            <ExpenseChart/>
+            <ExpenseChart expense={expense} />
             <TransactionList transactions={transactions}/>
             <ExpenseCalendar/>
         </div>
