@@ -33,9 +33,18 @@ function TransactionForm(props) {
             .post('/transaction/add', transactionFormData, {headers: headers})
             .then((response) => {
                 if(response.status === 200){
-                    transactionFormData['_id'] = Math.floor((Math.random() * 1000) + 1)
-                    props.setTransaction((currTransData) => ([...currTransData, transactionFormData]))
-                    console.log(response)
+                    props.setTransaction((currTransData) => ([...currTransData, response.data]))
+
+                    // reset form
+                    document.getElementById("transaction-form").reset()
+                    setTransactionFormData({
+                        "title" : "",
+                        "date" : "",
+                        "category" : "",
+                        "type" : "",
+                        "amount" : "",
+                        "desc" : ""
+                    })
                 }
             })
             .catch((err) => {
@@ -54,16 +63,15 @@ function TransactionForm(props) {
                     "desc" : ""
                 })
             })
-        console.log(transactionFormData)
     }
 
     return (
         <div>
             <h2>Add Transcation</h2>
             <form onSubmit={handleTransactionFormSubmit} id="transaction-form">
-                <input type="text" name="title" onChange={handleInputChange}/><br/>
-                <input type="date" name="date" onChange={handleInputChange}/><br/>
-                <select name="category" onChange={handleInputChange}>
+                <input type="text" name="title" onBlur={handleInputChange}/><br/>
+                <input type="date" name="date" onBlur={handleInputChange}/><br/>
+                <select name="category" onBlur={handleInputChange}>
                     <option value="fun">Fun</option>
                     <option value="food"> Food</option>
                     <option value="education">Education</option>
@@ -75,10 +83,10 @@ function TransactionForm(props) {
                     <option value="rent">Rent</option>
                     <option value="subscription">Subscription</option>
                 </select><br/>
-                <input type="radio" name="type" value="income" onChange={handleInputChange}/> income <br/>
-                <input type="radio" name="type" value="expense" onChange={handleInputChange}/> expenditure<br/>
-                <input type="text" name="amount" placeholder="amount" onChange={handleInputChange}/><br/>
-                <input type="text" name="desc" placeholder="description" onChange={handleInputChange}/><br/>
+                <input type="radio" name="type" value="income" onBlur={handleInputChange}/> income <br/>
+                <input type="radio" name="type" value="expense" onBlur={handleInputChange}/> expenditure<br/>
+                <input type="text" name="amount" placeholder="amount" onBlur={handleInputChange}/><br/>
+                <input type="text" name="desc" placeholder="description" onBlur={handleInputChange}/><br/>
                 {formError.isError && <p>{formError.errorMessage}</p>}
                 <input type="submit" name="submit"/>
             </form>

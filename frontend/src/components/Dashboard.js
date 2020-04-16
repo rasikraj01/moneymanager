@@ -21,25 +21,23 @@ function Dashboard(props) {
         return transaction.type === "income"
     })
 
-    console.log(income);
     
     
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     let headers = {
-    //         'auth-token' : localStorage.getItem('auth-token')
-    //     }
-    //     Axios
-    //         .get('/transaction/', {headers: headers})
-    //         .then((data)=>{
-    //             setTransaction(data.data)
-    //             console.log(data)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
+        let headers = {
+            'auth-token' : localStorage.getItem('auth-token')
+        }
+        Axios
+            .get('/transaction/', {headers: headers})
+            .then((data)=>{
+                setTransaction(data.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
             
-    //     }, [])
+        }, [])
 
     return (
         <div>
