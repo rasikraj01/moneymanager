@@ -32,11 +32,7 @@ router.post('/add', authenticate ,async (req, res) => {
     // save transaction
     try{
         const savedTransaction = await newTransaction.save()
-        res.send({
-            user : savedTransaction.user,
-            title: savedTransaction.title,
-            amount : savedTransaction.amount
-        }).status(200)
+        res.send(savedTransactionv).status(200)
 
     }catch (err) {
         res.send(err).status(400)
