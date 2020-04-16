@@ -7,7 +7,6 @@ import { Bar } from 'react-chartjs-2';
 // aprrr yet to fix
 
 function BarGraph(props) {
-    // const myRef = useRef(null)
     
     //function to sort object by keys
     const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
@@ -76,38 +75,8 @@ function BarGraph(props) {
             }
         ]
     }
-    let bar_chart_options = {
-        // responsive : true,
-        maintainAspectRatio: false
-    }
-    // useEffect(() => {
-    //     const myChartRef = myRef.current.getContext("2d");
-    //     new Chart(myChartRef, {
-    //         type: "bar",
-    //         data: {
-    //             //Bring in data
-    //             labels: data_labels_Arr,
-    //             datasets: [
-    //                 {
-    //                     label: "expense",
-    //                     data: Object.values(sortObject(expense_data)), // sort and grab values
-    //                     backgroundColor: '#FF6384',
-    //                 },
-    //                 {
-    //                     label: "income",
-    //                     data: Object.values(sortObject(income_data)), // sort and grab values
-    //                     backgroundColor: '#36A2EB'
-    //                 }
-    //             ]
-    //         },
-    //         options: {
-                
-    //         }
-    //     });
-    // },[income_data, expense_data, data_labels])
     return (
         <div className="bargraph">
-            {/* <canvas id="my-chart" ref={myRef}/> */}
             <Bar data={bar_chart_data} height={500} options={{ maintainAspectRatio: false }}/>
         </div>
   );

@@ -8,10 +8,20 @@ import ExpenseChart from './ExpenseChart';
 import TransactionList from './TransactionList';
 
 import '../scss/dashboard.scss';
-import Logout from './Logout';
+
+const parseJwt =  (token) => {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
 
 function Dashboard(props) {
     let [transactions, setTransaction] = useState([])
+    let [username, setUsername] = useState("")
 
     let expense = transactions.filter((transaction) => {
         return transaction.type === "expense"
@@ -24,12 +34,12 @@ function Dashboard(props) {
     
     
     useEffect(() => {
+
         const CancelToken = Axios.CancelToken;
         const source = CancelToken.source();
 
-        const loadData = () =>{
-
-           
+        // fetch transaction from db
+        const loadData = () => {
             let headers = {
                 'auth-token' : localStorage.getItem('auth-token')
             }
@@ -47,6 +57,14 @@ function Dashboard(props) {
                 })
         }
         loadData();
+        
+        const getUserName = async () => {
+            await setUsername(() => {
+                let payload = parseJwt(localStorage.getItem('auth-token'))
+                return payload.name
+            })
+        }
+        getUserName();
 
         return () => {
             source.cancel();
@@ -57,7 +75,11 @@ function Dashboard(props) {
     return (
         <div className="dashboard">
             {!props.isLoggedIn && (<Redirect to="/login" />)}
-            <Link to="/logout">Logout</Link>
+            <div className="topbar">
+                <div className="username">User : {username}</div>
+                <h2 className="appname">Moneymngr</h2>
+                <div className="logout"><Link to="/logout">Logout</Link></div>
+            </div>
             <BarGraph expense={expense} income={income} />
             <ExpenseChart expense={expense} />
             <TransactionList transactions={transactions}/>
