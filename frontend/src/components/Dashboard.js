@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import Axios from 'axios';
 
 import BarGraph from './BarGraph';
 import TransactionForm from './TransactionForm';
 import ExpenseChart from './ExpenseChart';
 import TransactionList from './TransactionList';
-import ExpenseCalendar from './ExpenseCalendar';
 
-import Axios from 'axios';
-
+import '../scss/dashboard.scss';
+import Logout from './Logout';
 
 function Dashboard(props) {
     let [transactions, setTransaction] = useState([])
@@ -24,29 +24,44 @@ function Dashboard(props) {
     
     
     useEffect(() => {
-        
-        let headers = {
-            'auth-token' : localStorage.getItem('auth-token')
+        const CancelToken = Axios.CancelToken;
+        const source = CancelToken.source();
+
+        const loadData = () =>{
+
+           
+            let headers = {
+                'auth-token' : localStorage.getItem('auth-token')
+            }
+            Axios
+                .get('/transaction/', {headers: headers, cancelToken: source.token })
+                .then((data)=>{
+                    setTransaction(data.data)
+                })
+                .catch( (err) => {
+                    if(Axios.isCancel(err)){
+                        console.log('cancelled')
+                    }else{
+                        console.log(err);   
+                    }
+                })
         }
-        Axios
-            .get('/transaction/', {headers: headers})
-            .then((data)=>{
-                setTransaction(data.data)
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        loadData();
+
+        return () => {
+            source.cancel();
+        };
             
         }, [])
 
     return (
-        <div>
-            {/* {!props.isLoggedIn && (<Redirect to="/login" />)} */}
+        <div className="dashboard">
+            {!props.isLoggedIn && (<Redirect to="/login" />)}
+            <Link to="/logout">Logout</Link>
             <BarGraph expense={expense} income={income} />
-            <TransactionForm setTransaction={setTransaction}/>
             <ExpenseChart expense={expense} />
             <TransactionList transactions={transactions}/>
-            <ExpenseCalendar/>
+            <TransactionForm setTransaction={setTransaction}/>
         </div>
   );
 }

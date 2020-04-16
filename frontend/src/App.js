@@ -8,12 +8,10 @@ import { BrowserRouter as Router,
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import Logout from './components/Logout';
 
 function App() {
 	let [isLoggedIn, setIsLoggedIn] = useState(false)
-	// useEffect(() => {
-	// 	setIsLoggedIn(true)
-	// })
 	return (
 
 		<div>
@@ -28,8 +26,11 @@ function App() {
 					<Route path="/dashboard">
 						<Dashboard isLoggedIn={isLoggedIn}/>
 					</Route>
+					<Route path="/logout">
+						<Logout setIsLoggedIn={setIsLoggedIn}/>
+					</Route>
 				</Switch>
-				{/* {isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>} */}
+				{isLoggedIn ? <Redirect to="/dashboard"/>: <Redirect to="/login"/>}
 			</Router>
 		</div>
 	);

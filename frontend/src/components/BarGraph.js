@@ -4,12 +4,11 @@ import moment from 'moment';
 import { Bar } from 'react-chartjs-2';
 
 
-// two bugs to fix
-// aprrr
-// 2 render
+// aprrr yet to fix
 
 function BarGraph(props) {
     // const myRef = useRef(null)
+    
     //function to sort object by keys
     const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
 
@@ -61,7 +60,7 @@ function BarGraph(props) {
     //      this[index] = moment(item).format('MMM YY')
     // }, data_labels_Arr)
 
-    let my_data={
+    let bar_chart_data={
         //Bring in data
         labels: data_labels_Arr,
         datasets: [
@@ -76,6 +75,10 @@ function BarGraph(props) {
                 backgroundColor: '#36A2EB'
             }
         ]
+    }
+    let bar_chart_options = {
+        // responsive : true,
+        maintainAspectRatio: false
     }
     // useEffect(() => {
     //     const myChartRef = myRef.current.getContext("2d");
@@ -103,9 +106,9 @@ function BarGraph(props) {
     //     });
     // },[income_data, expense_data, data_labels])
     return (
-        <div>
+        <div className="bargraph">
             {/* <canvas id="my-chart" ref={myRef}/> */}
-            <Bar data={my_data} />
+            <Bar data={bar_chart_data} height={500} options={{ maintainAspectRatio: false }}/>
         </div>
   );
 }

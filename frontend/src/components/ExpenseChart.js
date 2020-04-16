@@ -3,8 +3,6 @@ import Chart from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 function ExpenseChart(props) {
-    // const myRef = useRef(null)
-
 
     // data objecct init 
     let data = {}
@@ -37,41 +35,9 @@ function ExpenseChart(props) {
             }
         ]
     }
-    // useEffect(() => {
-    //     const myChartRef = myRef.current.getContext("2d");
-        
-    //     new Chart(myChartRef, {
-    //         type: "doughnut",
-    //         data: {
-    //             //Bring in data
-    //             labels: Object.keys(data),
-    //             datasets: [{
-    //                 data: Object.values(data),
-    //                 backgroundColor: [
-    //                     '#FF6384',
-    //                     '#36A2EB',
-    //                     '#27ae60',
-    //                     '#FFCE56',
-    //                     '#476172',
-    //                     '#1abc9c',
-    //                     '#9b59b6',
-    //                     '#f1c40f',
-    //                     '#e67e22',
-    //                     '#34495e',
-    //                     ],
-    //                     hoverBackgroundColor: []
-    //                 }
-    //             ]
-    //         },
-    //         options: {
-    //             //Customize chart options
-    //         }
-    //     }, [data]);
-    // })
     return (
-        <div>
-            {/* <canvas id="my-chart" ref={myRef}/> */}
-            <Doughnut data={chart_data}/>
+        <div className="doughnut">
+            <Doughnut data={chart_data} height={500} options={{ maintainAspectRatio: false }}/>
         </div>
   );
 }

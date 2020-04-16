@@ -66,10 +66,10 @@ function TransactionForm(props) {
     }
 
     return (
-        <div>
+        <div className="addtransaction">
             <h2>Add Transcation</h2>
             <form onSubmit={handleTransactionFormSubmit} id="transaction-form">
-                <input type="text" name="title" onBlur={handleInputChange}/><br/>
+                <input type="text" name="title" placeholder="Title" onBlur={handleInputChange}/><br/>
                 <input type="date" name="date" onBlur={handleInputChange}/><br/>
                 <select name="category" onBlur={handleInputChange}>
                     <option value="fun">Fun</option>
@@ -83,12 +83,12 @@ function TransactionForm(props) {
                     <option value="rent">Rent</option>
                     <option value="subscription">Subscription</option>
                 </select><br/>
-                <input type="radio" name="type" value="income" onBlur={handleInputChange}/> income <br/>
-                <input type="radio" name="type" value="expense" onBlur={handleInputChange}/> expenditure<br/>
+                <input type="radio" name="type" value="income" onBlur={handleInputChange}/> <span>income</span> <br/>
+                <input type="radio" name="type" value="expense" onBlur={handleInputChange}/> <span>expenditure</span><br/>
                 <input type="text" name="amount" placeholder="amount" onBlur={handleInputChange}/><br/>
                 <input type="text" name="desc" placeholder="description" onBlur={handleInputChange}/><br/>
                 {formError.isError && <p>{formError.errorMessage}</p>}
-                <input type="submit" name="submit"/>
+                <input type="submit" value="Add" name="submit"/>
             </form>
         </div>
   );

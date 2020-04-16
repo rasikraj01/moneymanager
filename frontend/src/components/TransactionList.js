@@ -5,7 +5,7 @@ function TransactionList(props) {
 
     
     return (
-        <div>
+        <div className="transactionList">
             <h3>Previous Transactions</h3>
             <table>
                 <thead>
