@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Redirect } from 'react-router-dom';
 
-import LineGraph from './LineGraph';
+import BarGraph from './LineGraph';
 import TransactionForm from './TransactionForm';
 import ExpenseChart from './ExpenseChart';
 import TransactionList from './TransactionList';
@@ -143,7 +143,7 @@ function Dashboard(props) {
     return (
         <div>
             {/* {!props.isLoggedIn && (<Redirect to="/login" />)} */}
-            <LineGraph expense={expense} income={income} />
+            <BarGraph expense={expense} income={income} />
             <TransactionForm/>
             <ExpenseChart expense={expense} />
             <TransactionList transactions={transactions}/>

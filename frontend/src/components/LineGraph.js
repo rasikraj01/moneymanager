@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import Chart from 'chart.js';
 import moment from 'moment';
 
-function LineGraph(props) {
+function BarGraph(props) {
     const myRef = useRef(null)
     //function to sort object by keys
     const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
@@ -92,4 +92,4 @@ function LineGraph(props) {
   );
 }
 
-export default LineGraph;
+export default BarGraph;
