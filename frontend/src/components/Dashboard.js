@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Redirect } from 'react-router-dom';
 
-import BarGraph from './LineGraph';
+import BarGraph from './BarGraph';
 import TransactionForm from './TransactionForm';
 import ExpenseChart from './ExpenseChart';
 import TransactionList from './TransactionList';
